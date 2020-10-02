@@ -1,4 +1,4 @@
-# Ecomerce Crawler
+# Ecommerce Crawler
 
 A crawler for many different ecommerces. Let's go get those prices!
 
