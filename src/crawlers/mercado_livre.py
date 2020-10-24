@@ -1,5 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
+import csv
+
+with open("entrada.csv", "r") as arquivo_csv:
+    leitor = csv.reader(arquivo_csv, delimiter=',')
+    for coluna in leitor:
+        print(coluna)
 
 res = requests.get('https://lista.mercadolivre.com.br/botas')
 soup = BeautifulSoup(res.text, 'html.parser')
