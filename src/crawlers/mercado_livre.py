@@ -2,10 +2,15 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 
-with open("entrada.csv", "r") as arquivo_csv:
+y = ""
+with open("Entrada.csv", "r") as arquivo_csv:
     leitor = csv.reader(arquivo_csv, delimiter=',')
     for coluna in leitor:
-        print(coluna)
+        palavras = str(coluna).split()
+        for x in palavras:
+            y = y + "-" + x
+        print(y)
+        y = ""
 
 res = requests.get('https://lista.mercadolivre.com.br/botas')
 soup = BeautifulSoup(res.text, 'html.parser')
@@ -25,4 +30,4 @@ for i in range(len(items)):
 
     full_price = 'R$ {},{}'.format(price_fraction, price_cents)
 
-    print(title, full_price)
+    # print(title, full_price)
