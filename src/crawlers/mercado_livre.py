@@ -2,15 +2,24 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 
-y = ""
+aux = 1
+
+site = []
+
 with open("Entrada.csv", "r") as arquivo_csv:
     leitor = csv.reader(arquivo_csv, delimiter=',')
     for coluna in leitor:
         palavras = str(coluna).split()
         for x in palavras:
-            y = y + "-" + x
-        print(y)
-        y = ""
+            if aux == 1:
+                y = 'https://lista.mercadolivre.com.br/' + x
+                aux = aux + 1
+            else:
+                y = y + "-" + x
+                aux = aux + 1
+        site.append(y)
+        aux = 1
+print(site)
 
 res = requests.get('https://lista.mercadolivre.com.br/botas')
 soup = BeautifulSoup(res.text, 'html.parser')
