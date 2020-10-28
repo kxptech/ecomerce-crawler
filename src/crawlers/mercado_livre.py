@@ -5,7 +5,7 @@ import csv
 aux = 0
 csv_exit = []
 
-with open("Arquivo\\Entrada.csv", "r") as arquivo_csv:
+with open("../../archives/Entrada.CSV", "r") as arquivo_csv:
     csv_items = csv.reader(arquivo_csv, delimiter=',')
     for item in csv_items:
         item = '-'.join(item)
