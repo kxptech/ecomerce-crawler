@@ -1,0 +1,4 @@
+.vscode
+.idea
+src/crawlers/__pycache__
+result

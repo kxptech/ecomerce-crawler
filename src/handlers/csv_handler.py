@@ -12,7 +12,7 @@ def csv_reader():
 
 def csv_writer(items, products):
     for i in range(len(items)):
-        with open('Saída ' + str(i + 1) + '.csv', 'w', newline='') as csv_file:
+        with open('../../result/result' + str(i + 1) + '.csv', 'w', newline='') as csv_file:
             writer = csv.writer(csv_file)
             if i == 0:
                 writer.writerow(["PRODUTO", "VALOR"])
