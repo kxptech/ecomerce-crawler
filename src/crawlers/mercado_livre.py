@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import csv_handler
+from src.modules import csv_handler
 
 csv_items = csv_handler.csv_reader()
 
@@ -12,6 +12,7 @@ for item in csv_items:
     soup = BeautifulSoup(res.text, 'html.parser')
     items = soup.find_all('div', {'class': 'ui-search-result__content-wrapper'})
     products = []
+    products.append(['PRODUTOS', 'VALOR'])
     for i in range(len(items)):
         item_to_be_parsed = BeautifulSoup(str(items[i]), 'html.parser')
         title = item_to_be_parsed.find(
