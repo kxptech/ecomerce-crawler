@@ -4,6 +4,8 @@ from src.modules import csv_handler
 
 csv_items = csv_handler.csv_reader()
 
+indice = 1
+
 for item in csv_items:
     item = '-'.join(item)
     item = str(item).replace(' ', '-')
@@ -29,4 +31,5 @@ for item in csv_items:
 
         products.append([title, full_price])
 
-    csv_handler.csv_writer(csv_items, products)
+    csv_handler.csv_writer(products, indice)
+    indice += 1
