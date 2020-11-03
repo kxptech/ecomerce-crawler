@@ -10,10 +10,8 @@ def csv_reader():
         return items
 
 
-def csv_writer(items, products):
-    for i in range(len(items)):
-        with open('Saída ' + str(i + 1) + '.csv', 'w', newline='') as csv_file:
-            writer = csv.writer(csv_file)
-            if i == 0:
-                writer.writerow(["PRODUTO", "VALOR"])
+def csv_writer(products, indice):
+    with open('Saída ' + str(indice) + '.csv', 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        for i in range(len(products)):
             writer.writerow(products[i])
