@@ -7,7 +7,6 @@ csv_items = csv_handler.csv_reader()
 indice = 1
 
 for item in csv_items['Produtos']:
-    #item = '-'.join(item)
     print(item)
     item = str(item).replace(' ', '-')
     print(item)
@@ -16,7 +15,6 @@ for item in csv_items['Produtos']:
     soup = BeautifulSoup(res.text, 'html.parser')
     items = soup.find_all('div', {'class': 'ui-search-result__content-wrapper'})
     products = []
-    products.append(['PRODUTOS', 'VALOR'])
     for i in range(len(items)):
         item_to_be_parsed = BeautifulSoup(str(items[i]), 'html.parser')
         title = item_to_be_parsed.find(

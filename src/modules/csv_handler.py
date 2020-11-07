@@ -1,5 +1,4 @@
 import pandas as pd
-import csv
 
 
 def csv_reader():
@@ -8,7 +7,5 @@ def csv_reader():
 
 
 def csv_writer(products, indice):
-    with open('Saída ' + str(indice) + '.csv', 'w', newline='') as csv_file:
-        writer = csv.writer(csv_file)
-        for i in range(len(products)):
-            writer.writerow(products[i])
+    df = pd.DataFrame(products, columns=['Produtos', 'Valor'])
+    df.to_csv(r'../../archives/Saída' + str(indice) + '.csv', index=False)
