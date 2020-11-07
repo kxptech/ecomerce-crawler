@@ -6,9 +6,11 @@ csv_items = csv_handler.csv_reader()
 
 indice = 1
 
-for item in csv_items:
-    item = '-'.join(item)
+for item in csv_items['Produtos']:
+    #item = '-'.join(item)
+    print(item)
     item = str(item).replace(' ', '-')
+    print(item)
     item = 'https://lista.mercadolivre.com.br/' + item
     res = requests.get(item)
     soup = BeautifulSoup(res.text, 'html.parser')
