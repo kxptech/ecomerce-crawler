@@ -2,10 +2,10 @@ from bs4 import BeautifulSoup
 import requests
 from src.modules import csv_handler
 from multiprocessing import Pool
+import time
 
 
 def executeProcess(link):
-    products = []
     res = requests.get(link)
     item_to_be_parsed = BeautifulSoup(res.text, 'html.parser')
     title = item_to_be_parsed.find('h1', 'ui-pdp-title').text
@@ -21,11 +21,17 @@ def executeProcess(link):
 
     try:
         numb_solds = item_to_be_parsed.find('span', 'ui-pdp-subtitle').text
+        if (numb_solds != 'Novo'):
+            numb_solds = numb_solds.join(numb for numb in numb_solds.split() if numb.isdigit())
+        else:
+            numb_solds = '0'
     except:
-        numb_solds = '0 vendas'
+        numb_solds = '0'
 
+    numb_solds = int(numb_solds)
     full_price = price_fraction + '.' + price_cents
     full_price = float(full_price)
+
     return [title, full_price, numb_solds]
 
 
@@ -33,6 +39,8 @@ if __name__ == '__main__':
     csv_items = csv_handler.csv_reader()
 
     indice = 1
+
+    t0 = time.time()
 
     for item in csv_items['Produtos']:
 
@@ -52,12 +60,14 @@ if __name__ == '__main__':
                     links.append(link.get('href'))
 
         links = set(links)
-        print(links)
 
-        p = Pool(processes=30)
+        p = Pool(processes=10)
         products = p.map(executeProcess, links)
         p.close()
-        print(products)
 
         csv_handler.csv_writer(products, indice)
         indice += 1
+
+    t1 = time.time()
+    totalTime = t1 - t0
+    print(totalTime)
