@@ -8,4 +8,4 @@ def csv_reader():
 
 def csv_writer(products, indice):
     df = pd.DataFrame(products, columns=['PRODUTOS', 'VALOR', 'QTDE VENDIDA'])
-    df.to_csv(r'../../archives/Saída' + str(indice) + '.csv', index=False)
+    df.to_csv('../../archives/Saída' + str(indice) + '.csv', index=False)
